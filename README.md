@@ -5,6 +5,8 @@
       - [Related functions](#related-functions)
     - [Symbol Properties](#symbol-properties)
       - [Related functions](#related-functions)
+    - [More about enumerability](#more-about-enumerability)
+      - [Related functions](#related-functions)
 
 # Learn-JS-from-Vue
 
@@ -77,3 +79,21 @@ Object.getOwnPropertySymbols(object);
 ```
 
 Return `Symbol Properties` only, no matter they are `enumerable` or not.
+
+### More about enumerability
+
+**Enumerability** is important when you want to iterate through all or part the properties in any Objects.
+
+#### Related functions
+
+```javascript
+Object.keys(object);
+```
+
+Return **non-Symbol** `Properties` that are `enumerable`.
+
+```javascript
+Object.getOwnPropertyNames(object);
+```
+
+Return all **non-Symbol** `Properties`.
