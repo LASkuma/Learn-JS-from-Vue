@@ -3,6 +3,8 @@
   - [Properties](#properties)
     - [Property Descriptors](#property-descriptors)
       - [Related functions](#related-functions)
+    - [Symbol Properties](#symbol-properties)
+      - [Related functions](#related-functions)
 
 # Learn-JS-from-Vue
 
@@ -55,3 +57,23 @@ Object.getOwnPropertyDescriptor(object, propertyName);
 ```
 
 Get the **Descriptors** for the specified **property**.
+
+See more examples on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
+
+### Symbol Properties
+
+Besides **strings**, Javascript Object **properties** can also be **Symbols**. The common pitfall for **Symbol Properties** is their **enumerability**. They cannot be accessed with `Object.keys` or `for...in` loop event if you explicitly set `enumerable` descriptor to `true` for the **Symbol Property**.
+
+#### Related functions
+
+```javascript
+Reflect.ownKeys(object);
+```
+
+Return all the Symbol and non-Symbol `Properties` no matter they are `enumerable` or not.
+
+```javascript
+Object.getOwnPropertySymbols(object);
+```
+
+Return `Symbol Properties` only, no matter they are `enumerable` or not.
