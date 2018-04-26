@@ -1,12 +1,12 @@
 - [Learn-JS-from-Vue](#learn-js-from-vue)
 - [Object](#object)
-  - [Properties](#properties)
-    - [Property Descriptors](#property-descriptors)
-      - [Related functions](#related-functions)
-    - [Symbol Properties](#symbol-properties)
-      - [Related functions](#related-functions)
-    - [More about enumerability](#more-about-enumerability)
-      - [Related functions](#related-functions)
+    - [Properties](#properties)
+        - [Property Descriptors](#property-descriptors)
+            - [Related functions](#related-functions)
+        - [Symbol Properties](#symbol-properties)
+            - [Related functions](#related-functions)
+        - [More about enumerability](#more-about-enumerability)
+            - [Related functions](#related-functions)
 
 # Learn-JS-from-Vue
 
@@ -82,7 +82,7 @@ Return `Symbol Properties` only, no matter they are `enumerable` or not.
 
 ### More about enumerability
 
-**Enumerability** is important when you want to iterate through all or part the properties in any Objects.
+**Enumerability** is important when you want to iterate through all or part the properties in any Objects. However, you still need to make sure whether you want to iterate thgouth the Object's **own properties** or properties also on its **prototype chain**.
 
 #### Related functions
 
@@ -90,10 +90,18 @@ Return `Symbol Properties` only, no matter they are `enumerable` or not.
 Object.keys(object);
 ```
 
-Return **non-Symbol** `Properties` that are `enumerable`.
+Return **non-Symbol** `Properties` that are `enumerable`, for object's **own properties** only.
+
+```javascript
+for (let prop in object) {
+  // Do something
+}
+```
+
+Return **non-Symbol** `Properties` that are `enumerable`, for object's **own properties** and its **prototype chain**.
 
 ```javascript
 Object.getOwnPropertyNames(object);
 ```
 
-Return all **non-Symbol** `Properties`.
+Return all **non-Symbol** `Properties`, for object's **own properties** only.
