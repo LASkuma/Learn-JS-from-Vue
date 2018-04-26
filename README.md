@@ -7,6 +7,12 @@
             - [Related functions](#related-functions)
         - [More about enumerability](#more-about-enumerability)
             - [Related functions](#related-functions)
+    - [Prototype chain](#prototype-chain)
+        - [Inheritance in prototype fashion](#inheritance-in-prototype-fashion)
+        - [ES6 Classes](#es6-classes)
+        - [What's the difference between prototype, \_\_proto\_\_ and Object.getPrototypeOf?](#whats-the-difference-between-prototype----proto---and-objectgetprototypeof)
+            - [object.\_\_proto\_\_ and Object.getPrototypeOf(object)](#object--proto---and-objectgetprototypeofobject)
+            - [Func.prototype](#funcprototype)
 
 # Learn-JS-from-Vue
 
@@ -105,3 +111,45 @@ Object.getOwnPropertyNames(object);
 ```
 
 Return all **non-Symbol** `Properties`, for object's **own properties** only.
+
+## Prototype chain
+
+It's surprising enough for beginners to know that Javascript is **not** a **class based** language. For detailed information, check [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain).
+
+### Inheritance in prototype fashion
+
+It's totally different from inheritance in class based languages. Let's use the simplified example on MDN to get the main idea.
+
+```javascript
+```
+
+### ES6 Classes
+
+Fortunately, ES6 gives developers a [**class**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) style way to define classes. However, it's only a **syntax sugar** on prototype chains.
+
+### What's the difference between prototype, \_\_proto\_\_ and Object.getPrototypeOf?
+
+#### object.\_\_proto\_\_ and Object.getPrototypeOf(object)
+
+They are **same**. However, object.\_\_proto\_\_ is not coined in any spec, yet most of the modern browsers supports it. These two would return the **prototype** for the specified **object**.
+
+#### Func.prototype
+
+This gives you a way to extend the **constructor function** of the **prototype**. This makes **Mixin Pattern** possible.
+
+```javascript
+function A() {
+  this.a = 1;
+  this.b = 2;
+}
+
+const a1 = new A();
+// a1: { a: 1, b: 2 }
+
+A.ptototype.c = 3;
+const a2 = new A();
+// a1: { a: 1, b: 2, c: 3 }
+// a2: { a: 1, b: 2, c: 3 }
+```
+
+The behavior of `A.prototype = {...}` is unpredictable to me. Still trying to figure it out.
