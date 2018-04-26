@@ -153,3 +153,28 @@ const a2 = new A();
 ```
 
 The behavior of `A.prototype = {...}` is unpredictable to me. Still trying to figure it out.
+
+```javascript
+function A() {
+  this.a = 1;
+  this.b = 2;
+}
+
+let a1 = new A();
+// a: { a: 1, b: 2}
+
+A.prototype = {
+  c: 3,
+};
+
+let a2 = new A();
+// a1: { a: 1, b: 2 }
+// a2: { a: 1, b: 2, c: 3 }
+
+A.prototype.d = 4;
+
+let a3 = new A();
+// a1: { a: 1, b: 2 } and both a.c, a.d are undefined
+// a2: { a: 1, b: 2, c: 3, d: 4 }
+// a3: { a: 1, b: 2, c: 3, d: 4 }
+```
