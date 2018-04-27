@@ -121,6 +121,36 @@ It's surprising enough for beginners to know that Javascript is **not** a **clas
 It's totally different from inheritance in class based languages. Let's use the simplified example on MDN to get the main idea.
 
 ```javascript
+function A(a) {
+  this.a = a;
+}
+
+A.prototype.b = 2;
+
+function B(a, b) {
+  A.call(this, a);
+  this.b = b;
+  this.c = 'c';
+}
+B.prototype = Object.create(A.prototype, {
+  c: {
+    enumerable: true,
+    configurable: true,
+    value: 3,
+  },
+  d: {
+    enumerable: true,
+    configurable: true,
+    value: 4,
+  },
+});
+B.prototype.constructor = B;
+
+const a = new A(1);
+// a: { a: 1, __proto__: { b: 2 }}
+const b = new B('a', 'b');
+// b: { a: "a", b: "b", __proto__: { c: 3, d: 4 }}
+// c in function constructor B doesn't work
 ```
 
 ### ES6 Classes
