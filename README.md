@@ -13,6 +13,10 @@
         - [What's the difference between prototype, \_\_proto\_\_ and Object.getPrototypeOf?](#whats-the-difference-between-prototype----proto---and-objectgetprototypeof)
             - [object.\_\_proto\_\_ and Object.getPrototypeOf(object)](#object--proto---and-objectgetprototypeofobject)
             - [Func.prototype](#funcprototype)
+    - [Constructor and Prototype](#constructor-and-prototype)
+        - [Constructor](#constructor)
+        - [Prototype](#prototype)
+        - [Example](#example)
 
 # Learn-JS-from-Vue
 
@@ -207,4 +211,47 @@ let a3 = new A();
 // a1: { a: 1, b: 2 } and both a.c, a.d are undefined
 // a2: { a: 1, b: 2, c: 3, d: 4 }
 // a3: { a: 1, b: 2, c: 3, d: 4 }
+```
+
+## Constructor and Prototype
+
+> The prototype property is one of the most confusingly-named parts of JavaScript -- [MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes)
+
+### Constructor
+
+Define properties (includes functions) that should not be inherited.
+
+```javascript
+function Person(age) {
+  this.type = 'Human';
+  this.age = age;
+}
+```
+
+### Prototype
+
+Define properties (includes functions) that need to be inherited.
+
+```javascript
+Person.prototype.greeting = function() {
+  console.log('hello');
+};
+```
+
+### Example
+
+Use the Person class that we've defined above.
+
+```javascript
+function Teacher(age, years) {
+  Person.call(this, age);
+  this.years = years;
+}
+
+Teacher.prototype = Object.create(Person.prototype);
+Teacher.prototype.constructor = Teacher;
+
+const tim = new Teacher(39, 5);
+console.log(tim.type); // undefined
+tim.greeting(); // "hello"
 ```
