@@ -169,7 +169,7 @@ They are **same**. However, object.\_\_proto\_\_ is not coined in any spec, yet 
 
 #### Func.prototype
 
-This gives you a way to extend the **constructor function** of the **prototype**. This makes **Mixin Pattern** possible.
+This gives you a way to extend the **prototype**. This makes **Mixin Pattern** possible.
 
 ```javascript
 function A() {
