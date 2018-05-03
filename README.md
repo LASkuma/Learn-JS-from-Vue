@@ -9,6 +9,7 @@
             - [Related functions](#related-functions)
     - [Prototype chain](#prototype-chain)
         - [Inheritance in prototype fashion](#inheritance-in-prototype-fashion)
+            - [Why we need to re-assign Constructor.prototype.constructor?](#why-we-need-to-re-assign-constructorprototypeconstructor)
         - [ES6 Classes](#es6-classes)
         - [What's the difference between prototype, \_\_proto\_\_ and Object.getPrototypeOf?](#whats-the-difference-between-prototype----proto---and-objectgetprototypeof)
             - [object.\_\_proto\_\_ and Object.getPrototypeOf(object)](#object--proto---and-objectgetprototypeofobject)
@@ -156,6 +157,18 @@ const b = new B('a', 'b');
 // b: { a: "a", b: "b", __proto__: { c: 3, d: 4 }}
 // c in function constructor B doesn't work
 ```
+
+#### Why we need to re-assign Constructor.prototype.constructor?
+
+Let's assume we have a Baby class.
+
+```javascript
+function Baby() {
+  this.age = 0;
+}
+```
+
+We can create a baby instance by calling `new Baby()`. This would invoke the `Baby.prototype.constructor`. When we define the `Baby` constructor above, by default `Baby.prototype.constructor` would be the function itself. However, after we call `Baby.prototype = Object.create(Superclass.prototype)`, the constructor would be overwritten. Therefore, we need to re-assign `Baby.prototype.constructor` to itself.
 
 ### ES6 Classes
 
